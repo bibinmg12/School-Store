@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script>
+        var studentUrl = "{% url 'student' %}";
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var birthDate = document.getElementById('birth_date').value;
+            var address = document.getElementById('address').value;
+            var age = document.getElementById('age').value;
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
+            var department = document.getElementById('department').value;
+            var purpose = document.getElementById('purpose').value;
+
+            if (name === '' || birthDate === '' || address === '' || age === '' || phone === '' || email === '' || department === '' || purpose === '') {
+                alert('All fields are required.');
+            
+                return false; // Prevent form submission
+            }
+
+           
+                if (confirm('Order Confirmed.Click OK to go back to home page')) {
+
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/';
+
+                }
+            
+            return false; // Prevent form submission
+        }
+    </script> -->
+    
+
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'st_regis/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'st_regis/css/style.css' %}">
+
+</head>
+<body>
+
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="{% static 'st_regis/images/signup-img.jpg' %}" alt="">
+                </div>
+                <div class="signup-form">
+                    <form method="POST" action="{% url 'student' %}" class="register-form" id="register-form">
+                        {% csrf_token %}
+                        <h2>student registration form</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name :</label>
+                                <input type="text" name="name" id="name" required/>
+                            </div>
+                            <div class="form-group">
+                             <label for="birth_date">DOB :</label>
+                            <input type="date" name="birth_date" id="birth_date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address :</label>
+                            <input type="text" name="address" id="address" required/>
+                        </div>
+                        <div class="form-radio">
+                            <label for="gender" class="radio-label">Gender :</label>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="Male" value="Male">
+                                <label for="Male">Male</label>
+                                <span class="check"></span>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="Female" value="Female">
+                                <label for="Female">Female</label>
+                                <span class="check"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="age">Age :</label>
+<!--                                <input type="number" name="age" id="age" required min="1" max="5">-->
+                                 <input type="number" name="age" id="age" placeholder="Enter Age" required min="1" max="90">
+                            </div>
+                            <div class="form-group">
+                               <label for="phone">Phone number :</label>
+                                        <input type="number" name="phone" id="phone" placeholder="Enter Phone no" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="email" name="email" id="email" placeholder="Enter Email" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="dept">Department :</label>
+<!--                                <input type="text" id="dept" placeholder="Select Department">-->
+                                <div class="form-select" >
+<!--                                    <select name="dept" id="dept">-->
+                                        <select id="department" name="department">
+                                        <option value="">--Select Department--</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Commerce">Commerce</option>
+                                        <option value="Humanities">Humanities</option>
+                                        <option value="Bio Maths">Bio Maths</option>
+                                        <option value="VHSE">VHSE</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                               <label for="purpose">Purpose :</label>
+<!--                                        <input type="number" id="phone" placeholder="Enter Phone no" required>-->
+                                <div class="form-select">
+                                    <select name="purpose" id="purpose">
+                                        <option value="">--Select purpose--</option>
+                                        <option value="Enquiry">Enquiry</option>
+                                        <option value="Place Order">Place Order</option>
+                                        <option value="Return">Return</option>
+                                        <option value="Reporting">Reporting</option>
+                                        <option value="Placements">Placements</option>
+                                    </select>
+
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="pincode">Pincode :</label>-->
+<!--                            <input type="text" name="pincode" id="pincode">-->
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="course">Course :</label>
+                            <div class="form-select">
+                                <select id="course" name="course"></select>
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                  // Define the options for the course dropdown
+                                  var courses = {
+                                    "Computer Science": ["BCA", "B.tech CS", "B.sc Computer Science"],
+                                    "Commerce": ["CA", "CMA", "BBA"],
+                                    "Humanities": ["Geology", "Philosophy", "Sociology"],
+                                    "Bio Maths": ["Biotechnology", "MBBS", "Pharmacy"],
+                                    "VHSE": ["Automobile", "Civil Construction", "Lab Technician"]
+                                  };
+
+                                  // Get references to the department and course dropdowns
+                                  var department = $("#department");
+                                  var course = $("#course");
+
+                                  // Add an event listener to the department dropdown
+                                  department.on("change", function() {
+                                    // Clear the course dropdown
+                                    course.empty();
+
+                                    // Get the selected department from the department dropdown
+                                    var selected_department = department.val();
+
+                                    // Add the courses for the selected department to the course dropdown
+                                    courses[selected_department].forEach(function(course_name) {
+                                      var option = $("<option>").text(course_name);
+                                      course.append(option);
+                                    });
+                                  });
+                                </script>
+                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <div class="label-flex">
+                                <label for="material">Materials provide: </label><br>
+                            </div>
+                            <div class="form-check-group" >
+                                <div class="form-check-item" style="display: flex; align-items: center;">
+                                    <label for="pen">&nbsp;&nbsp;Note</label>
+                                    <input type="checkbox" name="Note" id="Notebook">
+                                    <label for="Notebook">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-check-item" style="display: flex; align-items: center;">
+                                    <label for="pen">&nbsp;&nbsp;pen</label>
+                                    <input type="checkbox" name="pen" id="pen">
+                                    <label for="pen">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-check-item" style="display: flex; align-items: center;">
+                                    <label for="paper">&nbsp;&nbsp;paper</label>
+                                    <input type="checkbox" name="paper" id="paper">
+                                    <label for="paper">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <span class="check"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-submit">
+<!--                            <input type="submit" value="Logout" class="submit" name="logout" id="logout" />-->
+                            
+<!--                            <input type="submit" value="Submit Form" class="submit" name="submit" id="submit" />-->
+<!--                            <button onclick="myFunction()"><input type="submit" value="submit form" class="submit" name="submit" id="submit" /></button>-->
+                            <!-- <input type="submit" value="Submit" class="submit" name="submit" id="submit" onclick="return validateForm();" /> -->
+                            <input type="submit" value="Submit" class="submit" name="submit" id="submit" onclick="return validateForm();" />
+                        </div>
+                        <!-- <input type="submit" value="Submit" class="submit" name="submit" id="submit" onclick="return validateForm();" /> -->
+                    </form>
+                    
+                    
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Logout" class="submit" name="logout" id="logout" />
+                    </form>
+
+                    <!-- <script>
+                        document.addEventListener('DOMContentLoaded',function(){
+                            {% if error_message %}
+                            alert("Error:{{ error_message }}");
+                            {% endif %}
+                        });
+                    </script> -->
+                    <!-- <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            {% if error_message %}
+                            alert("Error: {{ error_message }}");
+                            {% endif %}
+                        });
+                    </script> -->
+                   
+                    <!-- <div id="success-popup" class="popup">
+                        <div class="popup-content">
+                            <h1 style="color:green;">Success!</h1>
+                            <p>Your form has been submitted successfully.</p>
+                            <button id="closeSuccessPopup">Close</button>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'st_regis/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'st_regis/js/main.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pass error_message from Django to JavaScript
+            var errorMessage = "{{ error_message }}";
+    
+            // Now you can use errorMessage in your JavaScript code
+            if (errorMessage) {
+                alert("Error: " + errorMessage);
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pass error_message from Django to JavaScript
+            var success_message = "{{ success_message }}";
+
+            // Now you can use errorMessage in your JavaScript code
+            if (success_message) {
+                alert("Success: " + success_message + " Click OK for Home Page");
+                window.location.href = '/';
+            }
+        });
+    </script>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
